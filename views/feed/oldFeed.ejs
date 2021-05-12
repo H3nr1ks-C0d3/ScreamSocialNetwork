@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col s3">
+                <div class="card teal lighten-2">
+                    <div class="card-title">
+                        <h1>Scream</h1>
+                    </div>
+                    <div class="card-content">
+                        <form action="/feed/postScream" method="POST">
+                            <input type="text" placeholder="just let it out" name="screamItem">
+                            <input type="submit">
+                        </form>
+                        <p>Logged in as <%= user.userName %></p>
+                        <strong><a href="/logout">Logout</a></strong>
+                    </div>
+                </div>
+            </div>
+            <div class="col s9">
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Feed</h3>
+                        <ul>
+                            <% for(let i = 0; i < posts.length; i++){ %>
+                                <li>
+                                    <div class="card">
+                                        <div class="card-content">
+                                            <p><%= posts[i].content %></p>
+                                            <span>Like</span>
+                                            <span>Rescream</span>
+                                            <% if(posts[i].user == user.id ){ %>
+                                                <span>Delete</span>
+                                            <% } %>
+                                        </div>
+                                    </div>
+                                </li>    
+                            <% } %>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
